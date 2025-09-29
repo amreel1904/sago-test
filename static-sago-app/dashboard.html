@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sago Detection App - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <div class="logo-mini">
+                    <div class="logo-circle-mini">
+                        <div class="logo-inner-mini">
+                            <div class="logo-center-mini"></div>
+                            <div class="logo-leaf-mini"></div>
+                        </div>
+                    </div>
+                </div>
+                <h1>Sago Detection App</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-welcome">Welcome, Researcher</span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stats-card total">
+                <div class="stats-icon">📊</div>
+                <div class="stats-info">
+                    <h3 id="totalCount">139</h3>
+                    <p>Total Plants</p>
+                </div>
+            </div>
+            <div class="stats-card mature">
+                <div class="stats-icon">🌴</div>
+                <div class="stats-info">
+                    <h3 id="matureCount">4</h3>
+                    <p>Mature Plants</p>
+                </div>
+            </div>
+            <div class="stats-card immature">
+                <div class="stats-icon">🌱</div>
+                <div class="stats-info">
+                    <h3 id="immatureCount">135</h3>
+                    <p>Immature Plants</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="map-section">
+                <h2>Mature & Immature Detection Map</h2>
+                <div class="map-container" id="mapContainer">
+                    <img src="https://images.unsplash.com/photo-1724531281596-cfae90d5a082" alt="Aerial Map" class="map-image" id="mapImage">
+                    <div class="map-overlay" id="mapOverlay"></div>
+                    <div class="map-controls">
+                        <button class="control-btn active" onclick="toggleView('detection')">Detection View</button>
+                        <button class="control-btn" onclick="toggleView('upload')">Upload Mode</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="detection-info">
+                    <h3>Detection Results</h3>
+                    <div class="detection-legend">
+                        <div class="legend-item">
+                            <span class="legend-color mature-color"></span>
+                            <span>Mature Sago</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color immature-color"></span>
+                            <span>Immature Sago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-uploads">
+                    <h3>Recent Plant Data</h3>
+                    <div class="upload-list" id="uploadList">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+
+                <div class="upload-section" id="uploadSection" style="display: none;">
+                    <h3>Upload Plant Image</h3>
+                    <div class="upload-area" onclick="triggerFileUpload()">
+                        <div class="upload-icon">📁</div>
+                        <p>Click to select image</p>
+                        <p class="upload-hint">or drag and drop here</p>
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    
+                    <div class="classification-options" id="classificationOptions" style="display: none;">
+                        <h4>Classify this plant:</h4>
+                        <div class="classification-buttons">
+                            <button class="classify-btn mature" onclick="classifyUpload('mature')">Mature</button>
+                            <button class="classify-btn immature" onclick="classifyUpload('immature')">Immature</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for plant details -->
+    <div class="modal" id="plantModal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">Plant Details</h3>
+            <div id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
